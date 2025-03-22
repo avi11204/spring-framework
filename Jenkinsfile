@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE = "avanthikha/social-app"
         DOCKER_TAG = "latest"
-        DOCKER_CREDENTIALS_ID = "H@rsa2000"
-        GITHUB_CREDENTIALS_ID = "avi11204"
+        DOCKER_CREDENTIALS_ID = "avanthikha"
+        GITHUB_CREDENTIALS_ID = "Avanthikha B S"
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
