@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/Jervinjeno/spring-framework.git', branch: 'main'
+                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/avi11204/spring-framework.git', branch: 'main'
             }
         }
 
