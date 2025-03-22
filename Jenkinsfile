@@ -12,7 +12,16 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/avi11204/spring-framework.git', branch: 'main'
+                script {
+                    checkout scm: [
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/avi11204/spring-framework.git',
+                            credentialsId: GITHUB_CREDENTIALS_ID
+                        ]]
+                    ]
+                }
             }
         }
 
@@ -51,25 +60,4 @@ pipeline {
                 }
             }
         }
-
-        // stage('Deploy to Kubernetes') {
-        //     steps {
-        //         script {
-        //             sh '''
-        //                 chmod +x scripts/deploy.sh
-        //                 ./scripts/deploy.sh
-        //             '''
-        //         }
-        //     }
-        // }
     }
-
-    post {
-        success {
-            echo "Deployment Successful!"
-        }
-        failure {
-            echo "Deployment Failed!"
-        }
-    }
-}
