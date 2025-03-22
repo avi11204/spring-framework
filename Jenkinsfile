@@ -4,24 +4,15 @@ pipeline {
     environment {
         DOCKER_IMAGE = "avanthikha/social-app"
         DOCKER_TAG = "latest"
-        DOCKER_CREDENTIALS_ID = "avanthikha"
-        GITHUB_CREDENTIALS_ID = "Avanthikha B S"
+        DOCKER_CREDENTIALS_ID = "H@rsa2000"
+        GITHUB_CREDENTIALS_ID = "avi11204"
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                script {
-                    checkout scm: [
-                        $class: 'GitSCM',
-                        branches: [[name: '*/main']],
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/avi11204/spring-framework.git',
-                            credentialsId: GITHUB_CREDENTIALS_ID
-                        ]]
-                    ]
-                }
+                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/avi11204/spring-framework.git', branch: 'main'
             }
         }
 
@@ -60,4 +51,25 @@ pipeline {
                 }
             }
         }
+
+        // stage('Deploy to Kubernetes') {
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 chmod +x scripts/deploy.sh
+        //                 ./scripts/deploy.sh
+        //             '''
+        //         }
+        //     }
+        // }
     }
+
+    post {
+        success {
+            echo "Deployment Successful!"
+        }
+        failure {
+            echo "Deployment Failed!"
+        }
+    }
+}
