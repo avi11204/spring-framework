@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "techtalkjervin/social-app"
+        DOCKER_IMAGE = "avanthikha/social-app"
         DOCKER_TAG = "latest"
-        DOCKER_CREDENTIALS_ID = "docker-cred"
-        GITHUB_CREDENTIALS_ID = "github-credentials"
+        DOCKER_CREDENTIALS_ID = "avanthikha"
+        GITHUB_CREDENTIALS_ID = "Avanthikha B S"
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
